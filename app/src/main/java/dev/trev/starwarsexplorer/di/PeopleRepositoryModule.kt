@@ -5,7 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dev.trev.starwarsexplorer.api.SWApiService
-import dev.trev.starwarsexplorer.db.PersonDao
+import dev.trev.starwarsexplorer.db.SWDatabase
 import dev.trev.starwarsexplorer.repository.PeopleRepository
 
 @Module
@@ -13,8 +13,11 @@ import dev.trev.starwarsexplorer.repository.PeopleRepository
 object PeopleRepositoryModule {
 
     @Provides
-    fun providePeopleRepository(service: SWApiService, dao: PersonDao): PeopleRepository {
-        return PeopleRepository(service, dao)
+    fun providePeopleRepository(
+        db: SWDatabase,
+        service: SWApiService
+    ): PeopleRepository {
+        return PeopleRepository(db, service)
     }
 
 }

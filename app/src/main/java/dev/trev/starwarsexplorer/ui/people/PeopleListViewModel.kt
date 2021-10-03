@@ -2,13 +2,12 @@ package dev.trev.starwarsexplorer.ui.people
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.trev.starwarsexplorer.model.Person
 import dev.trev.starwarsexplorer.repository.PeopleRepository
-import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,23 +15,25 @@ import javax.inject.Inject
 class PeopleListViewModel @Inject constructor(private val peopleRepository: PeopleRepository) :
     ViewModel() {
 
-    private val _uiState = MutableStateFlow(PeopleListUiState.Success(emptyList()))
+    companion object {
+        const val PAGE_SIZE = 10
+    }
+
+    private val _uiState = MutableStateFlow(PeopleListUiState.Success(PagingData.empty()))
     val uiState: StateFlow<PeopleListUiState> = _uiState
 
     init {
         viewModelScope.launch {
-            async {
-                peopleRepository.loadPeople(false)
-            }
-            peopleRepository.getPeople()
-                .collect { people ->
-                    _uiState.value = PeopleListUiState.Success(people)
+            peopleRepository.people(PAGE_SIZE)
+                .cachedIn(viewModelScope)
+                .collect { pagingData ->
+                    _uiState.value = PeopleListUiState.Success(pagingData)
                 }
         }
     }
 }
 
 sealed class PeopleListUiState {
-    data class Success(val people: List<Person>) : PeopleListUiState()
+    data class Success(val pagingData: PagingData<Person>) : PeopleListUiState()
     data class Error(val exception: Throwable) : PeopleListUiState()
 }

@@ -1,25 +1,25 @@
 package dev.trev.starwarsexplorer.repository
 
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import dev.trev.starwarsexplorer.api.SWApiService
-import dev.trev.starwarsexplorer.db.PersonDao
-import dev.trev.starwarsexplorer.model.Person
-import kotlinx.coroutines.flow.Flow
+import dev.trev.starwarsexplorer.db.SWDatabase
 import javax.inject.Inject
 
 class PeopleRepository @Inject constructor(
+    private val db: SWDatabase,
     private val service: SWApiService,
-    private val personDao: PersonDao
 ) {
-
-    suspend fun loadPeople(forceRefresh: Boolean) {
-        val isEmpty = personDao.getCount() == 0
-        if (forceRefresh || isEmpty) {
-            val response = service.fetchPeopleResponse()
-            personDao.insertAll(response.people)
-        }
+    companion object {
+        const val RESOURCE = "people"
     }
 
-    fun getPeople(): Flow<List<Person>> {
-        return personDao.getAll()
-    }
+    @OptIn(ExperimentalPagingApi::class)
+    fun people(pageSize: Int) = Pager(
+        config = PagingConfig(pageSize),
+        remoteMediator = PageKeyedRemoteMediator(db, service, RESOURCE),
+    ) {
+        db.personDao().getAll()
+    }.flow
 }

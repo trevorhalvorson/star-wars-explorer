@@ -1,7 +1,6 @@
 package dev.trev.starwarsexplorer.ui.people
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import dev.trev.starwarsexplorer.R
-import dev.trev.starwarsexplorer.model.Person
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -27,7 +25,8 @@ class PeopleListFragment : Fragment() {
         fun newInstance() = PeopleListFragment()
     }
 
-    private val listViewModel: PeopleListViewModel by viewModels()
+    private val peopleListViewModel: PeopleListViewModel by viewModels()
+
     private val peopleAdapter = PeopleAdapter()
 
     override fun onCreateView(
@@ -45,9 +44,9 @@ class PeopleListFragment : Fragment() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                listViewModel.uiState.collect { uiState ->
+                peopleListViewModel.uiState.collect { uiState ->
                     when (uiState) {
-                        is PeopleListUiState.Success -> showPeople(uiState.people)
+                        is PeopleListUiState.Success -> peopleAdapter.submitData(uiState.pagingData)
                         is PeopleListUiState.Error -> showError(uiState.exception)
                     }
                 }
@@ -56,16 +55,11 @@ class PeopleListFragment : Fragment() {
     }
 
     private fun showError(exception: Throwable) {
-
         Snackbar.make(
             requireContext(),
             requireView(),
             exception.localizedMessage,
             Snackbar.LENGTH_SHORT
         ).show()
-    }
-
-    private fun showPeople(people: List<Person>) {
-        peopleAdapter.submitList(people)
     }
 }
