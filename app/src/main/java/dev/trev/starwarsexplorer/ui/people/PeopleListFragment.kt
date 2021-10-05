@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import dev.trev.starwarsexplorer.R
@@ -39,6 +40,10 @@ class PeopleListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val swipeRefreshLayout: SwipeRefreshLayout = view.findViewById(R.id.people_list_srl)
+        swipeRefreshLayout.setOnRefreshListener {
+            peopleAdapter.refresh()
+        }
         val recyclerView: RecyclerView = view.findViewById(R.id.people_list_rv)
         recyclerView.adapter = peopleAdapter
 
@@ -46,8 +51,14 @@ class PeopleListFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 peopleListViewModel.uiState.collect { uiState ->
                     when (uiState) {
-                        is PeopleListUiState.Success -> peopleAdapter.submitData(uiState.pagingData)
-                        is PeopleListUiState.Error -> showError(uiState.exception)
+                        is PeopleListUiState.Success -> {
+                            swipeRefreshLayout.isRefreshing = false
+                            peopleAdapter.submitData(uiState.pagingData)
+                        }
+                        is PeopleListUiState.Error -> {
+                            swipeRefreshLayout.isRefreshing = false
+                            showError(uiState.exception)
+                        }
                     }
                 }
             }
