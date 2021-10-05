@@ -13,7 +13,10 @@ interface PersonDao {
     suspend fun insertAll(people: List<Person>)
 
     @Query("SELECT * FROM person")
-    fun getAll(): PagingSource<Int, Person>
+    fun getAllPaged(): PagingSource<Int, Person>
+
+    @Query("SELECT * FROM person")
+    suspend fun getAll(): List<Person>
 
     @Query("DELETE FROM person")
     suspend fun deleteAll()

@@ -20,6 +20,6 @@ class PeopleRepository @Inject constructor(
         config = PagingConfig(pageSize),
         remoteMediator = PageKeyedRemoteMediator(db, service, RESOURCE),
     ) {
-        db.personDao().getAll()
+        db.personDao().getAllPaged()
     }.flow
 }

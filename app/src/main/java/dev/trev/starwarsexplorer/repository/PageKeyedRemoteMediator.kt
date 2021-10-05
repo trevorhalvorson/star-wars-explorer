@@ -21,7 +21,10 @@ class PageKeyedRemoteMediator(
     private val remoteKeyDao = db.remoteKeyDao()
 
     override suspend fun initialize(): InitializeAction {
-        return InitializeAction.LAUNCH_INITIAL_REFRESH
+        if (personDao.getAll().isEmpty()) {
+            return InitializeAction.LAUNCH_INITIAL_REFRESH
+        }
+        return InitializeAction.SKIP_INITIAL_REFRESH
     }
 
     override suspend fun load(
