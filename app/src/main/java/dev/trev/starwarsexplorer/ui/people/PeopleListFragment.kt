@@ -14,6 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import dev.trev.starwarsexplorer.R
+import dev.trev.starwarsexplorer.ui.common.NetworkLoadStateAdapter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -45,7 +46,8 @@ class PeopleListFragment : Fragment() {
             peopleAdapter.refresh()
         }
         val recyclerView: RecyclerView = view.findViewById(R.id.people_list_rv)
-        recyclerView.adapter = peopleAdapter
+        recyclerView.adapter =
+            peopleAdapter.withLoadStateFooter(NetworkLoadStateAdapter(peopleAdapter::retry))
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
