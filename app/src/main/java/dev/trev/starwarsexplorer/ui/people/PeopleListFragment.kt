@@ -27,8 +27,6 @@ class PeopleListFragment : Fragment() {
 
     companion object {
         const val TAG = "PeopleListFragment"
-
-        fun newInstance() = PeopleListFragment()
     }
 
     private val peopleListViewModel: PeopleListViewModel by viewModels()
