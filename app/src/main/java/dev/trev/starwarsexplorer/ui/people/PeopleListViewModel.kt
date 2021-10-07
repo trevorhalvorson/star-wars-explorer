@@ -19,7 +19,8 @@ class PeopleListViewModel @Inject constructor(private val peopleRepository: Peop
         const val PAGE_SIZE = 10
     }
 
-    private val _uiState = MutableStateFlow(PeopleListUiState.Success(PagingData.empty()))
+    private val _uiState =
+        MutableStateFlow<PeopleListUiState>(PeopleListUiState.Success(PagingData.empty()))
     val uiState: StateFlow<PeopleListUiState> = _uiState
 
     init {
