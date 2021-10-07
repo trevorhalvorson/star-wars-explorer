@@ -5,6 +5,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import dev.trev.starwarsexplorer.api.SWApiService
 import dev.trev.starwarsexplorer.db.SWDatabase
+import dev.trev.starwarsexplorer.model.Person
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class PeopleRepository @Inject constructor(
@@ -22,4 +24,7 @@ class PeopleRepository @Inject constructor(
     ) {
         db.personDao().getAllPaged()
     }.flow
+
+    fun person(uid: String): Flow<Person> = db.personDao().getPerson(uid)
+
 }
