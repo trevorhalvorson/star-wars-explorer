@@ -16,7 +16,7 @@ interface PersonDao {
     @Insert(onConflict = REPLACE)
     suspend fun insertPerson(person: Person)
 
-    @Query("SELECT * FROM person")
+    @Query("SELECT * FROM person ORDER BY CAST(uid as Int) ASC")
     fun getAllPaged(): PagingSource<Int, Person>
 
     @Query("SELECT * FROM person")
