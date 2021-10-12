@@ -9,7 +9,8 @@
         <entry key="app/src/main/res/layout/network_state_item.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/layout/people_list_fragment.xml" value="0.29483695652173914" />
         <entry key="app/src/main/res/layout/people_list_item.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/person_fragment.xml" value="0.13489583333333333" />
+        <entry key="app/src/main/res/layout/person_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/person_properties_list_item.xml" value="0.18020833333333333" />
       </map>
     </option>
   </component>

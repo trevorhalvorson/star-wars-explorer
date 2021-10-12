@@ -23,7 +23,7 @@ class PeopleAdapter(private val onClick: (Person) -> Unit) :
     }
 
     class ViewHolder(view: View, val onClick: (Person) -> Unit) : RecyclerView.ViewHolder(view) {
-        private val nameTextView: TextView = view.findViewById(R.id.person_name_text_view)
+        private val nameTextView: TextView = view.findViewById(R.id.people_list_item_name_text_view)
 
         private var person: Person? = null
 

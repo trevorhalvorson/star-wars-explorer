@@ -1,8 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ui.person.PersonFragment">
 
-</FrameLayout>
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/person_loading_progress_bar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/person_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/tools_person_name" />
+
+    <TextView
+        android:id="@+id/person_height_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/person_name_tv"
+        tools:text="@string/tools_person_height" />
+
+    <TextView
+        android:id="@+id/person_mass_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/person_height_tv"
+        tools:text="@string/tools_person_mass" />
+
+    <TextView
+        android:id="@+id/person_hair_color_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/person_mass_tv"
+        tools:text="@string/tools_person_hair_color" />
+
+    <TextView
+        android:id="@+id/person_skin_color_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/person_hair_color_tv"
+        tools:text="@string/tools_person_skin_color" />
+
+    <TextView
+        android:id="@+id/person_eye_color_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/person_skin_color_tv"
+        tools:text="@string/tools_person_eye_color" />
+
+    <TextView
+        android:id="@+id/person_birth_year_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/person_eye_color_tv"
+        tools:text="@string/tools_person_birth_year" />
+
+    <TextView
+        android:id="@+id/person_gender_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/person_birth_year_tv"
+        tools:text="@string/tools_person_gender" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

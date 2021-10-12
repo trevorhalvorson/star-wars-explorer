@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">Star Wars Explorer</string>
     <string name="retry">Retry</string>
+    <string name="person_height_label">Height: %1$scm</string>
+    <string name="person_mass_label">Mass: %1$skg</string>
+    <string name="person_hair_color_label">Hair Color: %1$s</string>
+    <string name="person_skin_color_label">Skin Color: %1$s</string>
+    <string name="person_eye_color_label">Eye Color: %1$s</string>
+    <string name="person_birth_year_label">Birth Year: %1$s</string>
+    <string name="person_gender_label">Gender: %1$s</string>
+    <!-- tools -->
+    <string name="tools_person_name">Obi-Wan Kenobi</string>
+    <string name="tools_person_height">182</string>
+    <string name="tools_person_mass">77</string>
+    <string name="tools_person_birth_year">57BBY</string>
+    <string name="tools_person_eye_color">blue-gray</string>
+    <string name="tools_person_gender">male</string>
+    <string name="tools_person_skin_color">fair</string>
+    <string name="tools_person_hair_color">auburn, white</string>
 </resources>

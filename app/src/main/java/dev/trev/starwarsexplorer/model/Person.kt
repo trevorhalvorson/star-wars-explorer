@@ -9,6 +9,7 @@ data class Person(
     @PrimaryKey val uid: String,
     val name: String,
     val url: String,
+    val propertiesExpirationTime: Long?,
     val height: String?,
     val mass: String?,
     val hairColor: String?,
@@ -20,11 +21,13 @@ data class Person(
 ) {
     constructor(
         uid: String,
-        properties: Properties
+        propertiesExpirationTime: Long?,
+        properties: Properties,
     ) : this(
         uid,
         properties.name,
         properties.url,
+        propertiesExpirationTime,
         properties.height,
         properties.mass,
         properties.hairColor,
