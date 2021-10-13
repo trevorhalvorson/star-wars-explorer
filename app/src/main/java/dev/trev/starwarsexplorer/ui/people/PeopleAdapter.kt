@@ -1,13 +1,11 @@
 package dev.trev.starwarsexplorer.ui.people
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import dev.trev.starwarsexplorer.R
+import dev.trev.starwarsexplorer.databinding.PeopleListItemBinding
 import dev.trev.starwarsexplorer.model.Person
 
 class PeopleAdapter(private val onClick: (Person) -> Unit) :
@@ -22,30 +20,32 @@ class PeopleAdapter(private val onClick: (Person) -> Unit) :
         }
     }
 
-    class ViewHolder(view: View, val onClick: (Person) -> Unit) : RecyclerView.ViewHolder(view) {
-        private val nameTextView: TextView = view.findViewById(R.id.people_list_item_name_text_view)
-
+    class ViewHolder(private val binding: PeopleListItemBinding, val onClick: (Person) -> Unit) :
+        RecyclerView.ViewHolder(binding.root) {
         private var person: Person? = null
 
         init {
-            view.setOnClickListener {
+            binding.root.setOnClickListener {
                 person?.let {
                     onClick(it)
                 }
             }
         }
 
-        fun bind(person: Person?) {
-            this.person = person
-            nameTextView.text = person?.name
+        fun bind(p: Person?) {
+            person = p
+            binding.peopleListItemNameTextView.text = person?.name
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.people_list_item, parent, false),
-            onClick
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding = PeopleListItemBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
         )
+        return ViewHolder(binding, onClick)
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))

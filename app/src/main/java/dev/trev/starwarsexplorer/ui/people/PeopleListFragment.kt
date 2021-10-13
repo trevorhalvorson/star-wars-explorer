@@ -5,20 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import dev.trev.starwarsexplorer.R
+import dev.trev.starwarsexplorer.databinding.PeopleListFragmentBinding
 import dev.trev.starwarsexplorer.model.Person
 import dev.trev.starwarsexplorer.ui.common.NetworkLoadStateAdapter
-import dev.trev.starwarsexplorer.ui.person.PersonFragment
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -31,11 +27,15 @@ class PeopleListFragment : Fragment() {
 
     private val peopleListViewModel: PeopleListViewModel by viewModels()
 
+    private var _binding: PeopleListFragmentBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.people_list_fragment, container, false)
+    ): View {
+        _binding = PeopleListFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,11 +43,12 @@ class PeopleListFragment : Fragment() {
 
         val peopleAdapter = PeopleAdapter { person -> onPersonClicked(person) }
 
-        val swipeRefreshLayout: SwipeRefreshLayout = view.findViewById(R.id.people_list_srl)
+        val swipeRefreshLayout = binding.peopleListSrl
         swipeRefreshLayout.setOnRefreshListener {
             peopleAdapter.refresh()
         }
-        val recyclerView: RecyclerView = view.findViewById(R.id.people_list_rv)
+
+        val recyclerView = binding.peopleListRv
         recyclerView.adapter =
             peopleAdapter.withLoadStateFooter(NetworkLoadStateAdapter(peopleAdapter::retry))
 
@@ -67,6 +68,11 @@ class PeopleListFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun onPersonClicked(person: Person) {
