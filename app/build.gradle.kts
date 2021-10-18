@@ -28,6 +28,11 @@ android {
             "SW_DB_NAME",
             "\"sw_db\""
         )
+        buildConfigField(
+            "int",
+            "SW_DB_VERSION",
+            "1"
+        )
     }
 
     buildTypes {
