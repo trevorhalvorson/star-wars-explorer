@@ -7,12 +7,12 @@ plugins {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = Sdks.compileSdkVersion
 
     defaultConfig {
         applicationId = "dev.trev.starwarsexplorer"
-        minSdk = 27
-        targetSdk = 31
+        minSdk = Sdks.minSdkVersion
+        targetSdk = Sdks.targetSdkVersion
         versionCode = 1
         versionName = "1.0"
 
@@ -58,44 +58,39 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.1")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    val lifecycleVersion = "2.3.1"
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-beta01")
-    implementation("androidx.fragment:fragment-ktx:1.3.6")
-    val roomVersion = "2.3.0"
-    implementation("androidx.room:room-runtime:$roomVersion")
-    implementation("androidx.room:room-ktx:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
-    val pagingVersion = "3.0.1"
-    implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-    val navVersion = "2.3.5"
-    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
-    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+    kapt(Deps.hiltCompiler)
+    kapt(Deps.roomCompiler)
 
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("com.google.dagger:hilt-android:2.38.1")
-    kapt("com.google.dagger:hilt-compiler:2.38.1")
+    implementation(Deps.appCompat)
+    implementation(Deps.constraintLayout)
+    implementation(Deps.core)
+    implementation(Deps.fragment)
+    implementation(Deps.gson)
+    implementation(Deps.hilt)
+    implementation(Deps.legacySupport)
+    implementation(Deps.lifeCycleLiveData)
+    implementation(Deps.lifeCycleViewModel)
+    implementation(Deps.lifeCycleRuntime)
+    implementation(Deps.material)
+    implementation(Deps.navFrag)
+    implementation(Deps.navUi)
+    implementation(platform(Deps.okhttpBom))
+    implementation(Deps.okhttp)
+    implementation(Deps.okhttpLoggingInt)
+    implementation(Deps.paging)
+    implementation(Deps.retrofit)
+    implementation(Deps.retrofitGson)
+    implementation(Deps.room)
+    implementation(Deps.roomRuntime)
+    implementation(Deps.swipe)
 
-    implementation("com.google.code.gson:gson:2.8.8")
+    kaptAndroidTest(Deps.hiltCompiler)
 
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.9.0"))
-    implementation("com.squareup.okhttp3:okhttp")
-    implementation("com.squareup.okhttp3:logging-interceptor")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    androidTestImplementation(TestDeps.androidX)
+    androidTestImplementation(TestDeps.archCore)
+    androidTestImplementation(TestDeps.core)
+    androidTestImplementation(TestDeps.espresso)
+    androidTestImplementation(TestDeps.hilt)
 
-    // Testing dependencies
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.38.1")
-    androidTestImplementation("androidx.test:core-ktx:1.4.0")
-    androidTestImplementation("androidx.test.ext:junit-ktx:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
-    testImplementation("junit:junit:4.+")
+    testImplementation(TestDeps.jUnit)
 }
