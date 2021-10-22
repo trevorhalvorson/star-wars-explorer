@@ -25,9 +25,6 @@ interface PersonDao {
     @Query("SELECT * FROM person WHERE uid = :uid")
     fun getPerson(uid: String): Flow<Person>
 
-    @Query("SELECT propertiesExpirationTime FROM person WHERE uid = :uid")
-    suspend fun getPersonPropertiesExpirationTime(uid: String): Long?
-
     @Query("DELETE FROM person")
     suspend fun deleteAll()
 }

@@ -8,6 +8,7 @@ import dev.trev.starwarsexplorer.api.SWApiService
 import dev.trev.starwarsexplorer.db.SWDatabase
 import dev.trev.starwarsexplorer.model.Person
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class PeopleRepository @Inject constructor(
@@ -27,8 +28,8 @@ class PeopleRepository @Inject constructor(
     }.flow
 
     suspend fun person(uid: String): Flow<Person> {
-        val expirationTime = db.personDao().getPersonPropertiesExpirationTime(uid)
-        if (expirationTime == null || System.currentTimeMillis() > expirationTime) {
+        val expTime = db.personDao().getPerson(uid).first().propertiesExpirationTime
+        if (expTime == null || System.currentTimeMillis() > expTime) {
             val response = service.fetchPerson(uid)
             val person = Person(
                 response.result.uid,
