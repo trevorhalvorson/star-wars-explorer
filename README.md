@@ -57,4 +57,5 @@ Additionally, this application uses a single-activity/multiple fragment architec
 - [Kotlin](https://kotlinlang.org/)
 - [Flows](https://developer.android.com/kotlin/flow)
 - [Gradle Kotlin DSL](https://gradle.org/kotlin/)
+- [Saved State module](https://developer.android.com/topic/libraries/architecture/viewmodel-savedstate)
 - [View Binding](https://developer.android.com/topic/libraries/view-binding)
