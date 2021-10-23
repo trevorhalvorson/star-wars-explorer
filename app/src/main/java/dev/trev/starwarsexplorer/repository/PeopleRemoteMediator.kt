@@ -12,7 +12,7 @@ import retrofit2.HttpException
 import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
-class PageKeyedRemoteMediator(
+class PeopleRemoteMediator(
     private val db: SWDatabase,
     private val service: SWApiService,
     private val resource: String,
@@ -21,7 +21,7 @@ class PageKeyedRemoteMediator(
     private val remoteKeyDao = db.remoteKeyDao()
 
     override suspend fun initialize(): InitializeAction {
-        if (personDao.getAll().isEmpty()) {
+        if (personDao.getPeople(limit = 1).isEmpty()) {
             return InitializeAction.LAUNCH_INITIAL_REFRESH
         }
         return InitializeAction.SKIP_INITIAL_REFRESH

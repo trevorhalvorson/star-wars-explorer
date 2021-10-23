@@ -18,7 +18,7 @@ class PeopleRepository @Inject constructor(
     @OptIn(ExperimentalPagingApi::class)
     fun people(pageSize: Int) = Pager(
         config = PagingConfig(pageSize),
-        remoteMediator = PageKeyedRemoteMediator(db, service, RESOURCE),
+        remoteMediator = PeopleRemoteMediator(db, service, RESOURCE),
     ) {
         db.personDao().getAllPaged()
     }.flow

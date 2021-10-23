@@ -20,7 +20,10 @@ interface PersonDao {
     fun getAllPaged(): PagingSource<Int, Person>
 
     @Query("SELECT * FROM person")
-    suspend fun getAll(): List<Person>
+    suspend fun getPeople(): List<Person>
+
+    @Query("SELECT * FROM person LIMIT :limit")
+    suspend fun getPeople(limit: Int): List<Person>
 
     @Query("SELECT * FROM person WHERE uid = :uid")
     fun getPerson(uid: String): Flow<Person>

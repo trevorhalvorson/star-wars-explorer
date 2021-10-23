@@ -38,7 +38,7 @@ class PeronDaoTest {
 
     @Test
     fun getPeople() = runBlocking {
-        val people = dao.getAll()
+        val people = dao.getPeople()
         assertThat(people.size, equalTo(4))
     }
 
