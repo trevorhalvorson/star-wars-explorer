@@ -24,7 +24,7 @@
         android:label="person_fragment"
         tools:layout="@layout/person_fragment">
         <argument
-            android:name="uidArg"
+            android:name="personUid"
             app:argType="string" />
     </fragment>
 </navigation>

@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import dev.trev.starwarsexplorer.R
@@ -20,12 +19,6 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PersonFragment : Fragment() {
-
-    companion object {
-        const val TAG = "PersonFragment"
-    }
-
-    private val args: PersonFragmentArgs by navArgs()
     private val personViewModel: PersonViewModel by viewModels()
 
     private var _binding: PersonFragmentBinding? = null
@@ -61,9 +54,6 @@ class PersonFragment : Fragment() {
                 }
             }
         }
-
-        val uid = args.uidArg
-        personViewModel.setUid(uid)
     }
 
     override fun onDestroyView() {
@@ -100,5 +90,9 @@ class PersonFragment : Fragment() {
             exception.localizedMessage,
             Snackbar.LENGTH_SHORT
         ).show()
+    }
+
+    companion object {
+        const val TAG = "PersonFragment"
     }
 }
