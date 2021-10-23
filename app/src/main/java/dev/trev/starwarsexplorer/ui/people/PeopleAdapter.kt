@@ -8,18 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.trev.starwarsexplorer.databinding.PeopleListItemBinding
 import dev.trev.starwarsexplorer.model.Person
 
-class PeopleAdapter(private val onClick: (Person) -> Unit) :
-    PagingDataAdapter<Person, PeopleAdapter.ViewHolder>(PERSON_COMPARATOR) {
-
-    companion object {
-        val PERSON_COMPARATOR = object : DiffUtil.ItemCallback<Person>() {
-            override fun areItemsTheSame(oldItem: Person, newItem: Person) = oldItem == newItem
-
-            override fun areContentsTheSame(oldItem: Person, newItem: Person) =
-                oldItem.uid == newItem.uid
-        }
-    }
-
+class PeopleAdapter(
+    private val onClick: (Person) -> Unit,
+) : PagingDataAdapter<Person, PeopleAdapter.ViewHolder>(PERSON_COMPARATOR) {
     class ViewHolder(private val binding: PeopleListItemBinding, val onClick: (Person) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         private var person: Person? = null
@@ -49,5 +40,14 @@ class PeopleAdapter(private val onClick: (Person) -> Unit) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
+    }
+
+    companion object {
+        val PERSON_COMPARATOR = object : DiffUtil.ItemCallback<Person>() {
+            override fun areItemsTheSame(oldItem: Person, newItem: Person) = oldItem == newItem
+
+            override fun areContentsTheSame(oldItem: Person, newItem: Person) =
+                oldItem.uid == newItem.uid
+        }
     }
 }

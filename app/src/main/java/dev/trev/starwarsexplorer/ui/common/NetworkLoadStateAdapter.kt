@@ -9,9 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.trev.starwarsexplorer.databinding.NetworkStateItemBinding
 
 class NetworkLoadStateAdapter(
-    private val retry: () -> Unit
+    private val retry: () -> Unit,
 ) : LoadStateAdapter<NetworkLoadStateAdapter.LoadStateViewHolder>() {
-
     class LoadStateViewHolder(
         private val binding: NetworkStateItemBinding,
         private val retryCallback: () -> Unit

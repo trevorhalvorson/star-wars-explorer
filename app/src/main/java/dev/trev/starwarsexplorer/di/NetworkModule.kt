@@ -15,7 +15,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-
     @Provides
     fun provideOkHttpInterceptor(): Interceptor {
         val interceptor = HttpLoggingInterceptor()

@@ -16,9 +16,7 @@ import javax.inject.Inject
 class PersonViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val peopleRepository: PeopleRepository,
-) :
-    ViewModel() {
-
+) : ViewModel() {
     val uid = savedStateHandle.get<String>(PERSON_UID_SAVED_STATE_KEY)
 
     private val _uiState = MutableStateFlow<PersonUiState>(PersonUiState.Loading)

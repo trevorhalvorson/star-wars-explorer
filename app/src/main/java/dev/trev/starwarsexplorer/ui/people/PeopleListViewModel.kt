@@ -12,13 +12,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PeopleListViewModel @Inject constructor(private val peopleRepository: PeopleRepository) :
-    ViewModel() {
-
-    companion object {
-        const val PAGE_SIZE = 10
-    }
-
+class PeopleListViewModel @Inject constructor(
+    private val peopleRepository: PeopleRepository,
+) : ViewModel() {
     private val _uiState =
         MutableStateFlow<PeopleListUiState>(PeopleListUiState.Success(PagingData.empty()))
     val uiState: StateFlow<PeopleListUiState> = _uiState
@@ -31,6 +27,10 @@ class PeopleListViewModel @Inject constructor(private val peopleRepository: Peop
                     _uiState.value = PeopleListUiState.Success(pagingData)
                 }
         }
+    }
+
+    companion object {
+        const val PAGE_SIZE = 10
     }
 }
 

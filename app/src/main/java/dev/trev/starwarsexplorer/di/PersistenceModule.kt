@@ -13,7 +13,6 @@ import dev.trev.starwarsexplorer.db.SWDatabase
 @Module
 @InstallIn(SingletonComponent::class)
 object PersistenceModule {
-
     @Provides
     fun provideSWDatabase(@ApplicationContext context: Context) =
         Room.databaseBuilder(

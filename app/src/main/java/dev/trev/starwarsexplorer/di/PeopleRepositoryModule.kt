@@ -11,7 +11,6 @@ import dev.trev.starwarsexplorer.repository.PeopleRepository
 @Module
 @InstallIn(ActivityComponent::class)
 object PeopleRepositoryModule {
-
     @Provides
     fun providePeopleRepository(
         db: SWDatabase,

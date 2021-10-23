@@ -20,11 +20,6 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PeopleListFragment : Fragment() {
-
-    companion object {
-        const val TAG = "PeopleListFragment"
-    }
-
     private val peopleListViewModel: PeopleListViewModel by viewModels()
 
     private var _binding: PeopleListFragmentBinding? = null
@@ -89,5 +84,9 @@ class PeopleListFragment : Fragment() {
             exception.localizedMessage,
             Snackbar.LENGTH_SHORT
         ).show()
+    }
+
+    companion object {
+        const val TAG = "PeopleListFragment"
     }
 }

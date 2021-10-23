@@ -15,10 +15,6 @@ class PeopleRepository @Inject constructor(
     private val db: SWDatabase,
     private val service: SWApiService,
 ) {
-    companion object {
-        const val RESOURCE = "people"
-    }
-
     @OptIn(ExperimentalPagingApi::class)
     fun people(pageSize: Int) = Pager(
         config = PagingConfig(pageSize),
@@ -39,5 +35,9 @@ class PeopleRepository @Inject constructor(
             db.personDao().insertPerson(person)
         }
         return db.personDao().getPerson(uid)
+    }
+
+    companion object {
+        const val RESOURCE = "people"
     }
 }
