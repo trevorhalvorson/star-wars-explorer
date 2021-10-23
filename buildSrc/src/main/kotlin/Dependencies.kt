@@ -9,6 +9,7 @@ object Deps {
     val appCompat by lazy { "androidx.appcompat:appcompat:${Versions.appCompat}" }
     val constraintLayout by lazy { "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}" }
     val core by lazy { "androidx.core:core-ktx:${Versions.core}" }
+    val dataStorePrefs by lazy { "androidx.datastore:datastore-preferences:${Versions.dataStorePrefs}" }
     val fragment by lazy { "androidx.fragment:fragment-ktx:${Versions.fragment}" }
     val gson by lazy { "com.google.code.gson:gson:${Versions.gson}" }
     val hilt by lazy { "com.google.dagger:hilt-android:${Versions.hilt}" }

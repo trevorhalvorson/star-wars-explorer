@@ -8,6 +8,7 @@ object Versions {
     const val appCompat = "1.3.1"
     const val constraintLayout = "2.1.1"
     const val core = "1.6.0"
+    const val dataStorePrefs = "1.0.0"
     const val fragment = "1.3.6"
     const val gradlePlugin = "7.0.3"
     const val gson = "2.8.8"

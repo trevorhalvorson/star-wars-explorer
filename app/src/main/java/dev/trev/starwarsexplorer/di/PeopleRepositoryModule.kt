@@ -1,10 +1,13 @@
 package dev.trev.starwarsexplorer.di
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dev.trev.starwarsexplorer.api.SWApiService
+import dev.trev.starwarsexplorer.db.PersonDao
 import dev.trev.starwarsexplorer.db.SWDatabase
 import dev.trev.starwarsexplorer.repository.PeopleRepository
 
@@ -13,10 +16,11 @@ import dev.trev.starwarsexplorer.repository.PeopleRepository
 object PeopleRepositoryModule {
     @Provides
     fun providePeopleRepository(
-        db: SWDatabase,
-        service: SWApiService
+        personDao: PersonDao,
+        service: SWApiService,
+        dataStore: DataStore<Preferences>,
     ): PeopleRepository {
-        return PeopleRepository(db, service)
+        return PeopleRepository(personDao, service, dataStore)
     }
 
 }

@@ -41,6 +41,7 @@ Additionally, this application uses a single-activity/multiple fragment architec
 
 ### Dependencies (selected)
 
+- [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) (key-value storage)
 - [Gson](https://github.com/google/gson) (JSON serial/deserialization)
 - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) (dependency injection)
 - [Lifecycle-aware components](https://developer.android.com/topic/libraries/architecture/lifecycle) (component lifecycle changes)

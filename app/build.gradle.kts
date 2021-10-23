@@ -20,6 +20,11 @@ android {
 
         buildConfigField(
             "String",
+            "PREFS_DS_FILE_NAME",
+            "\"preferences\""
+        )
+        buildConfigField(
+            "String",
             "SWAPI_BASE_URL",
             "\"https://www.swapi.tech/api/\""
         )
@@ -64,6 +69,7 @@ dependencies {
     implementation(Deps.appCompat)
     implementation(Deps.constraintLayout)
     implementation(Deps.core)
+    implementation(Deps.dataStorePrefs)
     implementation(Deps.fragment)
     implementation(Deps.gson)
     implementation(Deps.hilt)
