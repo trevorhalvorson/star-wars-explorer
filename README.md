@@ -46,7 +46,7 @@ Additionally, this application uses a sinlge-activity/multiple fragment architec
 - [Lifecycle-aware components](https://developer.android.com/topic/libraries/architecture/lifecycle) (component lifecycle changes)
 - [Navigation component](https://developer.android.com/guide/navigation) (in-app navigation)
 - [Paging](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) (load and display paginated data)
-- [Retrofit](https://square.github.io/retrofit/)/[OkHttp](https://square.github.io/okhttp/) (REST/HTTP client)
+- [Retrofit](https://square.github.io/retrofit/) / [OkHttp](https://square.github.io/okhttp/) (REST/HTTP client)
 - [Room](https://developer.android.com/training/data-storage/room) (SQLite abstraction)
 
 > This project uses a Gradle [`buildSrc`](https://docs.gradle.org/current/userguide/organizing_gradle_projects.html#sec:build_sources) directory to simplify our dependency management and versioning.
@@ -56,4 +56,5 @@ Additionally, this application uses a sinlge-activity/multiple fragment architec
 
 - [Kotlin](https://kotlinlang.org/)
 - [Flows](https://developer.android.com/kotlin/flow)
+- [Gradle Kotlin DSL](https://gradle.org/kotlin/)
 - [View Binding](https://developer.android.com/topic/libraries/view-binding)
