@@ -37,7 +37,7 @@ Our data sources are a SQLite DB and an HTTP web service. As described previousl
 This Flow will come directly from our database.
 This pattern allows us to treat our database as the [single source of truth](https://developer.android.com/jetpack/guide#truth) where the ViewModel will listen for changes to our database which may be updated asynchronously with data fetched from the network. 
 
-Additionally, this application uses a sinlge-activity/multiple fragment architecture with navigation managed by the [Navigation component](https://developer.android.com/guide/navigation).
+Additionally, this application uses a single-activity/multiple fragment architecture with navigation managed by the [Navigation component](https://developer.android.com/guide/navigation).
 
 ### Dependencies (selected)
 
