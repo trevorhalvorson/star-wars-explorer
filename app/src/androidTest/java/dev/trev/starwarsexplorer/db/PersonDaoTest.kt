@@ -14,7 +14,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class PeronDaoTest {
+class PersonDaoTest {
     private lateinit var db: SWDatabase
     private lateinit var dao: PersonDao
 
@@ -26,9 +26,6 @@ class PeronDaoTest {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         db = Room.inMemoryDatabaseBuilder(context, SWDatabase::class.java).build()
         dao = db.personDao()
-
-        db.personDao().insertAll(testPeople)
-        db.personDao().insertPerson(testPerson)
     }
 
     @After
@@ -37,14 +34,15 @@ class PeronDaoTest {
     }
 
     @Test
-    fun getPeople() = runBlocking {
+    fun insertPeopleAndGetAll() = runBlocking {
+        db.personDao().insertAll(testPeople)
         val people = dao.getPeople()
-        assertThat(people.size, equalTo(4))
+        assertThat(people.size, equalTo(testPeople.size))
     }
 
     @Test
-    fun getPerson() = runBlocking {
-        assertThat(dao.getPerson(testPeople[0].uid).first(), equalTo(testPeople[0]))
+    fun insertPersonAndGetById() = runBlocking {
+        db.personDao().insertPerson(testPerson)
         assertThat(dao.getPerson(testPerson.uid).first(), equalTo(testPerson))
     }
 
